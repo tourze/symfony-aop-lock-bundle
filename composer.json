@@ -1,0 +1,25 @@
+{
+  "name": "tourze/symfony-aop-lock-bundle",
+  "description": "Lock for Symfony",
+  "type": "symfony-bundle",
+  "license": "MIT",
+  "require": {
+    "php": "^8.1",
+    "symfony/framework-bundle": "^6.4",
+    "symfony/lock": "^6.4",
+    "twig/twig": "^3.13|^4.0",
+    "tourze/symfony-aop-bundle": "0.0.*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^10.0",
+    "phpstan/phpstan": "^2.1"
+  },
+  "scripts": {
+    "phpstan": "phpstan analyse src -l 1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Tourze\\Symfony\\AopLockBundle\\": "src"
+    }
+  }
+}
