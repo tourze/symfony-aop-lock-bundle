@@ -15,11 +15,9 @@
     "tourze/symfony-aop-bundle": "~0.0.4"
   },
   "require-dev": {
+    "phpstan/phpstan": "^2.1",
     "phpunit/phpunit": "^10.0",
-    "phpstan/phpstan": "^2.1"
-  },
-  "scripts": {
-    "phpstan": "phpstan analyse src -l 1"
+    "shipmonk/composer-dependency-analyser": "^1.8"
   },
   "autoload": {
     "psr-4": {
