@@ -7,12 +7,12 @@
     "php": "^8.1",
     "symfony/config": "^6.4",
     "symfony/dependency-injection": "^6.4",
-    "symfony/yaml": "^6.4 || ^7.1",
     "symfony/framework-bundle": "^6.4",
-    "symfony/lock": "^6.4",
     "symfony/http-kernel": "^6.4",
-    "twig/twig": "^3.13|^4.0",
-    "tourze/symfony-aop-bundle": "~0.0.4"
+    "symfony/lock": "^6.4",
+    "symfony/yaml": "^6.4 || ^7.1",
+    "tourze/symfony-aop-bundle": "~0.0.4",
+    "twig/twig": "^3.13|^4.0"
   },
   "require-dev": {
     "phpstan/phpstan": "^2.1",
