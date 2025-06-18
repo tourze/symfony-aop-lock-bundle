@@ -31,7 +31,7 @@ class LockAspect
     private function getAttribute(JoinPoint $joinPoint): ?Lockable
     {
         $method = new \ReflectionMethod($joinPoint->getInstance(), $joinPoint->getMethod());
-        /** @var \ReflectionAttribute[] $attributes */
+        /** @var array<\ReflectionAttribute<Lockable>> $attributes */
         $attributes = $method->getAttributes(Lockable::class);
         if (empty($attributes)) {
             // 这里返回null，则不进行缓存处理
@@ -47,7 +47,7 @@ class LockAspect
     private function buildKey(JoinPoint $joinPoint): ?string
     {
         $attribute = $this->getAttribute($joinPoint);
-        if (!$attribute) {
+        if ($attribute === null) {
             return null;
         }
         // 如果没声明缓存key的话，我们根据方法名/参数自动生成一个
