@@ -50,14 +50,6 @@ class LockAspectTest extends TestCase
         $this->lockFactory->expects($this->never())->method('createLock');
     }
 
-    /**
-     * @group skip
-     */
-    public function testAcquireLockWithAttribute(): void
-    {
-        // 由于 Twig 的模拟复杂性，跳过该测试
-        $this->markTestSkipped('Skipping due to Twig mocking complexity');
-    }
 
     public function testReleaseLockWithNoLock(): void
     {
@@ -71,14 +63,6 @@ class LockAspectTest extends TestCase
         $this->lock->expects($this->never())->method('release');
     }
 
-    /**
-     * @group skip
-     */
-    public function testReleaseLockWithLock(): void
-    {
-        // 由于 Twig 的模拟复杂性，跳过该测试
-        $this->markTestSkipped('Skipping due to Twig mocking complexity');
-    }
 
     private function prepareJoinPointWithNoAttribute(): void
     {

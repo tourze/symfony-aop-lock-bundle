@@ -5,32 +5,20 @@ namespace Tourze\Symfony\AopLockBundle\Tests\Integration;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Lock\LockFactory;
 use Symfony\Component\Lock\Store\InMemoryStore;
-use Tourze\Symfony\AopLockBundle\Aspect\LockAspect;
 use Tourze\Symfony\AopLockBundle\Attribute\Lockable;
-use Twig\Environment;
-use Twig\Loader\ArrayLoader;
 
 /**
  * 集成测试，测试 Lockable 注解与 LockAspect 的协同工作
  */
 class LockableIntegrationTest extends TestCase
 {
-    private Environment $twig;
     private LockFactory $lockFactory;
-    private LockAspect $lockAspect;
 
     protected function setUp(): void
     {
-        // 创建实际的 Twig 环境
-        $loader = new ArrayLoader([]);
-        $this->twig = new Environment($loader);
-
         // 创建实际的 LockFactory
         $store = new InMemoryStore();
         $this->lockFactory = new LockFactory($store);
-
-        // 创建要测试的 LockAspect
-        $this->lockAspect = new LockAspect($this->lockFactory, $this->twig);
     }
 
     /**

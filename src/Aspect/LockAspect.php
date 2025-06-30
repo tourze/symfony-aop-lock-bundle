@@ -51,7 +51,7 @@ class LockAspect
             return null;
         }
         // 如果没声明缓存key的话，我们根据方法名/参数自动生成一个
-        $key = $attribute->key ?: $joinPoint->getUniqueId();
+        $key = !empty($attribute->key) ? $attribute->key : $joinPoint->getUniqueId();
 
         $template = $this->twig->createTemplate($key);
         return 'lock_' . trim($template->render([
