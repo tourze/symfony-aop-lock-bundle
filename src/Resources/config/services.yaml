@@ -4,6 +4,14 @@ services:
     autowire: true      # Automatically injects dependencies in your services.
     autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
+  # 配置 LockFactory 服务用于分布式锁功能
+  Symfony\Component\Lock\LockFactory:
+    arguments:
+      - '@Symfony\Component\Lock\Store\SemaphoreStore'
+
+  # 配置 SemaphoreStore 作为默认的锁存储
+  Symfony\Component\Lock\Store\SemaphoreStore: ~
+
   # 如果确认要使用自动扫描、自动注册，建议尽可能将要扫描的目录路径收缩，不要设置那么大的范围
   Tourze\Symfony\AopLockBundle\Aspect\:
     resource: '../../Aspect/'

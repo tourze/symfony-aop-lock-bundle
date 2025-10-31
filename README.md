@@ -3,8 +3,11 @@
 [English](README.md) | [中文](README.zh-CN.md)
 
 [![Latest Version](https://img.shields.io/packagist/v/tourze/symfony-aop-lock-bundle.svg?style=flat-square)](https://packagist.org/packages/tourze/symfony-aop-lock-bundle)
+[![PHP Version](https://img.shields.io/packagist/php-v/tourze/symfony-aop-lock-bundle.svg?style=flat-square)](https://packagist.org/packages/tourze/symfony-aop-lock-bundle)
+[![License](https://img.shields.io/packagist/l/tourze/symfony-aop-lock-bundle.svg?style=flat-square)](https://packagist.org/packages/tourze/symfony-aop-lock-bundle)
 [![Build Status](https://img.shields.io/travis/tourze/symfony-aop-lock-bundle/master.svg?style=flat-square)](https://travis-ci.org/tourze/symfony-aop-lock-bundle)
 [![Quality Score](https://img.shields.io/scrutinizer/g/tourze/symfony-aop-lock-bundle.svg?style=flat-square)](https://scrutinizer-ci.com/g/tourze/symfony-aop-lock-bundle)
+[![Coverage Status](https://img.shields.io/codecov/c/github/tourze/symfony-aop-lock-bundle.svg?style=flat-square)](https://codecov.io/gh/tourze/symfony-aop-lock-bundle)
 [![Total Downloads](https://img.shields.io/packagist/dt/tourze/symfony-aop-lock-bundle.svg?style=flat-square)](https://packagist.org/packages/tourze/symfony-aop-lock-bundle)
 
 A lightweight Symfony bundle providing declarative distributed locking based on AOP (Aspect-Oriented Programming). Easily add locking logic to your methods using attributes, enabling safe concurrency control in distributed environments.
@@ -22,7 +25,7 @@ A lightweight Symfony bundle providing declarative distributed locking based on 
 **Requirements:**
 - PHP >= 8.1
 - Symfony >= 6.4
-- symfony/lock, twig/twig, tourze/symfony-aop-bundle
+- Required dependencies: symfony/lock, twig/twig, tourze/symfony-aop-bundle
 
 Install via Composer:
 
@@ -33,7 +36,10 @@ composer require tourze/symfony-aop-lock-bundle
 Register the bundle in your `config/bundles.php` if not auto-registered:
 
 ```php
-Tourze\Symfony\AopLockBundle\AopLockBundle::class => ['all' => true],
+return [
+    // ... other bundles
+    Tourze\Symfony\AopLockBundle\AopLockBundle::class => ['all' => true],
+];
 ```
 
 ## Quick Start
@@ -80,16 +86,18 @@ class OrderService
 - Ensure all nodes have synchronized clocks in distributed setups
 - Monitor for lock timeouts and failures
 
-## Contribution Guide
+## Contributing
 
-- Issues and PRs are welcome!
+Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+
+Issues and PRs are welcome!
 - Follow PSR coding standards
 - Add tests for new features
-- Run `phpstan` for static analysis: `composer phpstan`
+- Run static analysis: `composer phpstan`
 
 ## License
 
-MIT License © tourze
+The MIT License (MIT). Please see [License File](LICENSE) for more information.
 
 ## Changelog
 

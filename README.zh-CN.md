@@ -3,8 +3,11 @@
 [English](README.md) | [中文](README.zh-CN.md)
 
 [![最新版本](https://img.shields.io/packagist/v/tourze/symfony-aop-lock-bundle.svg?style=flat-square)](https://packagist.org/packages/tourze/symfony-aop-lock-bundle)
+[![PHP 版本](https://img.shields.io/packagist/php-v/tourze/symfony-aop-lock-bundle.svg?style=flat-square)](https://packagist.org/packages/tourze/symfony-aop-lock-bundle)
+[![许可证](https://img.shields.io/packagist/l/tourze/symfony-aop-lock-bundle.svg?style=flat-square)](https://packagist.org/packages/tourze/symfony-aop-lock-bundle)
 [![构建状态](https://img.shields.io/travis/tourze/symfony-aop-lock-bundle/master.svg?style=flat-square)](https://travis-ci.org/tourze/symfony-aop-lock-bundle)
 [![质量评分](https://img.shields.io/scrutinizer/g/tourze/symfony-aop-lock-bundle.svg?style=flat-square)](https://scrutinizer-ci.com/g/tourze/symfony-aop-lock-bundle)
+[![代码覆盖率](https://img.shields.io/codecov/c/github/tourze/symfony-aop-lock-bundle.svg?style=flat-square)](https://codecov.io/gh/tourze/symfony-aop-lock-bundle)
 [![下载次数](https://img.shields.io/packagist/dt/tourze/symfony-aop-lock-bundle.svg?style=flat-square)](https://packagist.org/packages/tourze/symfony-aop-lock-bundle)
 
 一个轻量级的 Symfony Bundle，基于 AOP（面向切面编程）提供声明式分布式锁能力。开发者只需通过属性（注解）即可为方法添加锁定逻辑，轻松实现分布式环境下的并发安全控制。
@@ -22,7 +25,7 @@
 **环境要求：**
 - PHP >= 8.1
 - Symfony >= 6.4
-- 依赖 symfony/lock、twig/twig、tourze/symfony-aop-bundle
+- 必需依赖：symfony/lock、twig/twig、tourze/symfony-aop-bundle
 
 使用 Composer 安装：
 
@@ -33,7 +36,10 @@ composer require tourze/symfony-aop-lock-bundle
 如未自动注册，请在 `config/bundles.php` 中手动注册：
 
 ```php
-Tourze\Symfony\AopLockBundle\AopLockBundle::class => ['all' => true],
+return [
+    // ... 其他 bundles
+    Tourze\Symfony\AopLockBundle\AopLockBundle::class => ['all' => true],
+];
 ```
 
 ## 快速开始
@@ -82,14 +88,16 @@ class OrderService
 
 ## 贡献指南
 
-- 欢迎 Issue 和 PR！
+详情请参阅 [CONTRIBUTING.md](CONTRIBUTING.md)。
+
+欢迎 Issue 和 PR！
 - 遵循 PSR 代码规范
 - 新特性需补充测试
 - 静态分析请运行：`composer phpstan`
 
 ## 开源协议
 
-MIT License © tourze
+MIT 许可证。详情请参阅 [License File](LICENSE)。
 
 ## 更新日志
 

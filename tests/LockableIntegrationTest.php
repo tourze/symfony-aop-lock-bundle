@@ -1,7 +1,8 @@
 <?php
 
-namespace Tourze\Symfony\AopLockBundle\Tests\Integration;
+namespace Tourze\Symfony\AopLockBundle\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Lock\LockFactory;
 use Symfony\Component\Lock\Store\InMemoryStore;
@@ -9,13 +10,18 @@ use Tourze\Symfony\AopLockBundle\Attribute\Lockable;
 
 /**
  * 集成测试，测试 Lockable 注解与 LockAspect 的协同工作
+ *
+ * @internal
  */
-class LockableIntegrationTest extends TestCase
+#[CoversClass(Lockable::class)]
+final class LockableIntegrationTest extends TestCase
 {
     private LockFactory $lockFactory;
 
     protected function setUp(): void
     {
+        parent::setUp();
+
         // 创建实际的 LockFactory
         $store = new InMemoryStore();
         $this->lockFactory = new LockFactory($store);
@@ -27,16 +33,19 @@ class LockableIntegrationTest extends TestCase
     public function testLockableAttributeOnClass(): void
     {
         // 创建一个带有 Lockable 注解的测试类
-        $testObject = new class() {
+        $testObject = new class {
+            /** @var array<string> */
             private array $calls = [];
 
-            #[Lockable(key: "test_key")]
+            #[Lockable(key: 'test_key')]
             public function testMethod(string $param): string
             {
                 $this->calls[] = $param;
+
                 return 'Result: ' . $param;
             }
 
+            /** @return array<string> */
             public function getCalls(): array
             {
                 return $this->calls;

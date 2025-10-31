@@ -1,16 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tourze\Symfony\AopLockBundle\Tests;
 
-use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
+use Tourze\PHPUnitSymfonyKernelTest\AbstractBundleTestCase;
 use Tourze\Symfony\AopLockBundle\AopLockBundle;
 
-class AopLockBundleTest extends TestCase
+/**
+ * @internal
+ */
+#[CoversClass(AopLockBundle::class)]
+#[RunTestsInSeparateProcesses]
+final class AopLockBundleTest extends AbstractBundleTestCase
 {
-    public function testBundleCreation(): void
-    {
-        // 测试能否创建 Bundle 实例
-        $bundle = new AopLockBundle();
-        $this->assertInstanceOf(AopLockBundle::class, $bundle);
-    }
 }

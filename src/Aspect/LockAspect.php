@@ -3,6 +3,7 @@
 namespace Tourze\Symfony\AopLockBundle\Aspect;
 
 use Symfony\Component\Lock\LockFactory;
+use Symfony\Component\Lock\LockInterface;
 use Tourze\Symfony\Aop\Attribute\After;
 use Tourze\Symfony\Aop\Attribute\Aspect;
 use Tourze\Symfony\Aop\Attribute\Before;
@@ -18,6 +19,7 @@ class LockAspect
 {
     /**
      * JoinPoint和lock key的映射关系
+     * @var \WeakMap<JoinPoint, LockInterface>
      */
     private \WeakMap $lockKeys;
 
@@ -33,7 +35,7 @@ class LockAspect
         $method = new \ReflectionMethod($joinPoint->getInstance(), $joinPoint->getMethod());
         /** @var array<\ReflectionAttribute<Lockable>> $attributes */
         $attributes = $method->getAttributes(Lockable::class);
-        if (empty($attributes)) {
+        if ([] === $attributes) {
             // 这里返回null，则不进行缓存处理
             return null;
         }
@@ -47,13 +49,14 @@ class LockAspect
     private function buildKey(JoinPoint $joinPoint): ?string
     {
         $attribute = $this->getAttribute($joinPoint);
-        if ($attribute === null) {
+        if (null === $attribute) {
             return null;
         }
         // 如果没声明缓存key的话，我们根据方法名/参数自动生成一个
-        $key = !empty($attribute->key) ? $attribute->key : $joinPoint->getUniqueId();
+        $key = null !== $attribute->key && '' !== $attribute->key ? $attribute->key : $joinPoint->getUniqueId();
 
         $template = $this->twig->createTemplate($key);
+
         return 'lock_' . trim($template->render([
             ...$joinPoint->getParams(),
             'joinPoint' => $joinPoint,
@@ -64,7 +67,7 @@ class LockAspect
     public function acquireLock(JoinPoint $joinPoint): void
     {
         $key = $this->buildKey($joinPoint);
-        if ($key === null) {
+        if (null === $key) {
             return;
         }
 

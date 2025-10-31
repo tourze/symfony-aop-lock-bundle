@@ -2,10 +2,15 @@
 
 namespace Tourze\Symfony\AopLockBundle\Tests\Attribute;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Tourze\Symfony\AopLockBundle\Attribute\Lockable;
 
-class LockableTest extends TestCase
+/**
+ * @internal
+ */
+#[CoversClass(Lockable::class)]
+final class LockableTest extends TestCase
 {
     public function testConstructor(): void
     {
@@ -29,6 +34,10 @@ class LockableTest extends TestCase
         $this->assertSame(\Attribute::class, $attributes[0]->getName());
 
         $attributeInstance = $attributes[0]->newInstance();
-        $this->assertSame(\Attribute::TARGET_METHOD, $attributeInstance->flags);
+        // 使用反射获取flags属性值，避免直接访问undefined property
+        $reflection = new \ReflectionClass($attributeInstance);
+        $flagsProperty = $reflection->getProperty('flags');
+        $flagsProperty->setAccessible(true);
+        $this->assertSame(\Attribute::TARGET_METHOD, $flagsProperty->getValue($attributeInstance));
     }
 }
