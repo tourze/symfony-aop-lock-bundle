@@ -9,6 +9,7 @@
     "symfony/framework-bundle": "^7.3",
     "symfony/http-kernel": "^7.3",
     "symfony/lock": "^7.3",
+    "symfony/property-access": "^7.3",
     "symfony/yaml": "^7.3",
     "tourze/symfony-aop-bundle": "~0.0.4",
     "twig/twig": "^3.21"
@@ -17,7 +18,7 @@
     "phpstan/phpstan": "^2.1",
     "phpunit/phpunit": "^11.5",
     "symfony/twig-bundle": "^7.3",
-    "tourze/phpunit-symfony-kernel-test": "1.*",
+    "tourze/phpunit-symfony-kernel-test": "1.0.*",
     "tourze/phpunit-symfony-unit-test": "1.*",
     "tourze/symfony-dependency-service-loader": "1.*"
   },
